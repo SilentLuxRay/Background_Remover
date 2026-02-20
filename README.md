@@ -24,7 +24,7 @@ It specifically focuses on creating high-quality **transparent (Alpha channel) i
 
 1.  **Clone the repository** (or download and extract the ZIP):
     ```bash
-    git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+    git clone https://github.com/SilentLuxRay/Background_Remover.git
     cd YOUR_REPO_NAME
     ```
 
