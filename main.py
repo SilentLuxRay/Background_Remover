@@ -121,15 +121,35 @@ class AIDatasetPro(ctk.CTk):
             self.current_idx = 0; self.update_preview()
 
     def update_preview(self, e=None):
-        if not self.image_list or self.processing: return
+        # Se non ci sono immagini o stiamo elaborando, non fare nulla
+        if not self.image_list or self.processing: 
+            return
+            
         self.lbl_page.configure(text=f"{self.current_idx + 1} / {len(self.image_list)}")
-        raw = Image.open(os.path.join(self.input_folder, self.image_list[self.current_idx])).convert("RGB")
-        proc = self.process_image(raw)
-        w, h = proc.size
-        ratio = min(900/w, 750/h)
-        proc = proc.resize((int(w*ratio), int(h*ratio)), Image.Resampling.LANCZOS)
-        self.tk_img = ImageTk.PhotoImage(proc)
-        self.canvas_label.configure(image=self.tk_img)
+        
+        # Costruiamo il percorso del file
+        img_path = os.path.join(self.input_folder, self.image_list[self.current_idx])
+        
+        # Verifichiamo che il file esista davvero per evitare errori rossi nel terminale
+        if not os.path.exists(img_path):
+            print(f"File non trovato: {img_path}")
+            return
+
+        try:
+            # Apriamo l'immagine
+            raw = Image.open(img_path).convert("RGB")
+            proc = self.process_image(raw)
+            
+            # Calcoliamo le dimensioni della preview
+            w, h = proc.size
+            ratio = min(900/w, 750/h)
+            new_w, new_h = int(w*ratio), int(h*ratio)
+            
+            # USIAMO CTKIMAGE (Questo toglie l'errore giallo nel terminale)
+            self.ctk_img = ctk.CTkImage(light_image=proc, dark_image=proc, size=(new_w, new_h))
+            self.canvas_label.configure(image=self.ctk_img)
+        except Exception as err:
+            print(f"Errore durante la preview: {err}")
 
     def prev_img(self): self.current_idx = max(0, self.current_idx-1); self.update_preview()
     def next_img(self): self.current_idx = min(len(self.image_list)-1, self.current_idx+1); self.update_preview()
