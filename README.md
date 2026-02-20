@@ -78,5 +78,3 @@ This prevents the model from "learning" background noise, shadows, or artifacts,
 ## 📝 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-*Created by [Your Name/Github Username]*
