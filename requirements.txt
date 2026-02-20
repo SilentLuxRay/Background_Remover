@@ -1,0 +1,4 @@
+customtkinter
+rembg[gpu]
+pillow
+```[[1](https://www.google.com/url?sa=E&q=https%3A%2F%2Fvertexaisearch.cloud.google.com%2Fgrounding-api-redirect%2FAUZIYQE55oA8xPJP6etfTdkvMUmDAn3yxmi21wJ7kQUHE-mBqK9vN46qsfkLsNqf_yvyQRGBlykDZggFDqtdcjVmSMh3qfT98DPj2Q1GT6GwDrV8BRazqiVK-eTOjIR7ErPF34UtyE5iZE0%3D)]
